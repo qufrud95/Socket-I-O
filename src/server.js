@@ -1,6 +1,7 @@
 import express from "express";
 import http from "http";
-import WebSocket,{WebSocketServer} from "ws";
+import { Server } from 'socket.io';
+// import WebSocket,{WebSocketServer} from "ws";
 import path from 'path';
 const __dirname = path.resolve();
 
@@ -15,23 +16,15 @@ app.set("views", __dirname + "/src/views");
 app.get("/", (req, res) => res.render("home"));
 app.get("/*", (req, res) => res.redirect("/")) // user의 접근 방지 
 
-const handleListen = () => console.log(`Listening on http://localhost:3000`);
 
 //http server access 
-const server = http.createServer(app); // server 생성
-const wss = new WebSocketServer({server}) //http+wss
-
+const httpServer = http.createServer(app); // server 생성
+const wsServer = new Server(httpServer);
 //Connection event
-function onSocketClose(){
 
-    console.log("Disconnected from the Browser ❌")
-}
-function onSocketMessage(message){
-    console.log(message.toString());
-}
 // browser를 담는 임시 DB
+/*
 const sockets = [];
-
 wss.on("connection",(socket) => {
   sockets.push(socket);
   socket["nickname"] = "Anonymous";
@@ -53,8 +46,6 @@ wss.on("connection",(socket) => {
   });
    
 });
-    
-server.listen(3000,handleListen);
-{
-
-}
+*/ 
+const handleListen = () => console.log(`Listening on http://localhost:3000`);
+httpServer.listen(3000,handleListen);

@@ -32,6 +32,9 @@ socket.addEventListener("open", () => {
       event.preventDefault();
       const input = messageForm.querySelector("input");
       socket.send(makeMessage("new_message",input.value));
+      const li = document.createElement("li");
+      li.innerText =`You : ${input.value}`;
+      messageList.append(li);
       input.value = "";
   }
   function handleNickSubmit(event){
@@ -44,14 +47,14 @@ socket.addEventListener("open", () => {
   nickForm.addEventListener("submit",handleNickSubmit);
 // 내가 어디 있는지 정보를 담음 
 
-{
-    type:"message",
-    payload="hello everyone!"
+// {
+//     type:"message",
+//     payload="hello everyone!"
 
-}
+// }
 
-{
-    type:"nickname",
-    payload="nico!"
+// {
+//     type:"nickname",
+//     payload="nico!"
 
-}
+// }
