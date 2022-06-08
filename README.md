@@ -1,1 +1,1 @@
-# zoom clone using WebRTC and WebSockets
+# WebRTC and WebSockets
