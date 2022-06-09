@@ -20,6 +20,18 @@ app.get("/*", (req, res) => res.redirect("/")) // user의 접근 방지
 //http server access 
 const httpServer = http.createServer(app); // server 생성
 const wsServer = new Server(httpServer);
+
+wsServer.on("connection", (socket) => {
+    console.log(socket);
+    socket.on("enter_room", (msg, done) => {
+      console.log(msg);
+      setTimeout(() => {
+        done();
+      }, 10000);
+    });
+  });
+
+
 //Connection event
 
 // browser를 담는 임시 DB

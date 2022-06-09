@@ -11,13 +11,11 @@ html(lang="en")
         header  
             p#ti 실시간채팅
         main         
-            form#nick
-                input(type="text",placeholder="choose a nickname",requried)
-                button Save  
-            ul       
-            form#message
-                input(type="text" placeholder ="write a msg" requried) 
-                button Send
+            div#welcome 
+                form
+                    input(type="text" placeholder="room name",require)
+                    button  Enter Room
+        script(src="/socket.io/socket.io.js")
         script(src="/public/js/app.js")
 
         
